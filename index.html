@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ALEA | Secure Random Suite</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
+    <meta
+      name="description"
+      content="Kryptografisch sicherer Zufallsgenerator für Passwörter, Systeme und Lotto."
+    />
+  </head>
+  <body>
+    <div id="app">
+      <h1 class="unselectable">ALEA</h1>
+
+      <section class="settings unselectable">
+        <div class="control-group">
+          <label for="length-slider"
+            >Länge: <span id="length-value">32</span> Zeichen</label
+          >
+          <input type="range" id="length-slider" min="3" max="256" value="32" />
+        </div>
+
+        <div class="control-group">
+          <label for="count-slider"
+            >Anzahl: <span id="count-value">1</span></label
+          >
+          <input type="range" id="count-slider" min="1" max="99" value="1" />
+        </div>
+
+        <div class="control-group">
+          <label>Zielsystem / Typ</label>
+          <div class="radio-group">
+            <label
+              ><input type="radio" name="system" value="pw" checked />
+              Passwort</label
+            >
+            <label
+              ><input type="radio" name="system" value="linux" /> Linux</label
+            >
+            <label><input type="radio" name="system" value="ios" /> iOS</label>
+            <label
+              ><input type="radio" name="system" value="windows" />
+              Windows</label
+            >
+            <label
+              ><input type="radio" name="system" value="lotto" /> Lotto</label
+            >
+            <label><input type="radio" name="system" value="all" /> Alle</label>
+          </div>
+        </div>
+
+        <div class="action-section">
+          <div class="button-group">
+            <button id="generate-btn" class="primary-action">Generieren</button>
+            <button id="reset-btn" class="secondary-action">Leeren</button>
+          </div>
+          <p id="action-info" class="action-info">
+            Zeichensatz: a-z, A-Z, 0-9, Sonderzeichen
+          </p>
+        </div>
+      </section>
+
+      <section
+        id="output-container"
+        class="output-area"
+        style="display: none"
+      ></section>
+
+      <footer class="footer-area unselectable">
+        <div class="security-info">
+          <h3>Sicherheitshinweise</h3>
+          <p class="security-explanation">
+            Diese Anwendung nutzt die <strong>Web Crypto API</strong>. Die
+            Generierung erfolgt lokal. Es werden keine Daten übertragen.
+          </p>
+        </div>
+
+        <div class="utility-bar">
+          <button id="theme-toggle" class="text-btn">
+            <span class="material-symbols-outlined" id="theme-icon"
+              >dark_mode</span
+            >
+            <span>Design anpassen</span>
+          </button>
+          <span class="separator">|</span>
+          <button id="clear-lc-btn" class="text-btn">Konfig löschen</button>
+        </div>
+      </footer>
+    </div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

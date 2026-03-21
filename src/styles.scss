@@ -1,3 +1,5 @@
+@use "sass:color";
+
 $color-brand: #d8ae8f;
 $color-bg: #ffffff;
 $color-text: #1a1a1a;
@@ -38,8 +40,40 @@ h1 {
     font-size: 2.8rem;
     font-weight: 800;
     text-align: center;
-    margin-bottom: 2rem;
     letter-spacing: 0.1em;
+    margin-bottom: 2rem;
+}
+
+.logo-title {
+    position: relative;
+    cursor: help;
+    font-size: 2.8rem;
+    font-weight: 800;
+    text-align: center;
+    margin: 0 auto 2rem auto;
+    letter-spacing: 0.1em;
+    display: table;
+    width: fit-content;
+
+    &::after {
+        content: attr(data-info);
+        position: absolute;
+        bottom: -18px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 0.8rem;
+        font-weight: 400;
+        letter-spacing: 0;
+        color: $color-brand;
+        opacity: 0;
+        transition: opacity 0.4s ease;
+        pointer-events: none;
+        white-space: nowrap;
+    }
+
+    &:hover::after {
+        opacity: 1;
+    }
 }
 
 .settings {
@@ -270,26 +304,112 @@ button {
     margin-top: 2rem;
     display: flex;
     flex-direction: column;
-    gap: 10px;
 }
 
 .result-row {
     display: flex;
     gap: 8px;
+    margin-bottom: 12px;
+    align-items: stretch;
 
-    input {
+    &.fade-in {
+        opacity: 0;
+        animation: rowAppear 0.4s cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
+    }
+
+    .input-group {
         flex: 1;
-        font-family: $font-mono;
-        padding: 12px;
-        border: 1px solid $color-border;
-        border-radius: 8px;
+        display: flex;
+        flex-direction: column;
         background: $color-surface;
-        font-size: 0.95rem;
+        border: 1px solid $color-border;
+        border-radius: 10px;
+        overflow: hidden;
+        min-height: 48px;
 
-        &:focus {
+        input {
+            width: 100%;
+            flex: 1;
+            font-family: $font-mono;
+            padding: 10px 14px;
+            border: none;
+            background: transparent;
+            font-size: 0.95rem;
             outline: none;
-            border-color: $color-brand;
+            color: $color-text;
         }
+    }
+
+    .strength-meter {
+        display: flex;
+        height: 4px;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.03);
+
+        .bar {
+            flex: 1;
+            height: 100%;
+            background: transparent;
+            transition: background 0.3s ease;
+        }
+
+        &.red .bar-1 {
+            background: #ff4d4d;
+        }
+
+        &.yellow {
+
+            .bar-1,
+            .bar-2 {
+                background: #ffd700;
+            }
+        }
+
+        &.green {
+
+            .bar-1,
+            .bar-2,
+            .bar-3 {
+                background: #41b883;
+            }
+        }
+    }
+}
+
+.dark-theme {
+    .result-row {
+        .input-group {
+            background: #252525;
+            border-color: #333;
+
+            input {
+                color: white;
+            }
+        }
+
+        .strength-meter {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .copy-btn-small {
+            background: color.adjust($color-brand, $lightness: -15%);
+
+            &:hover {
+                background: $color-brand;
+            }
+        }
+    }
+}
+
+@keyframes rowAppear {
+    0% {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 

@@ -5,7 +5,8 @@ import {
   ALEA_DATA,
   generatePassword,
   generateFileName,
-  generateLotto
+  generateLotto,
+  getStrength
 } from './modules/alea-engine.js';
 
 const _STORAGE_KEY_CONFIG = "alea_config";
@@ -85,11 +86,23 @@ $spinDown.addEventListener('mouseleave', stopSpin);
 $spinUpCount.addEventListener('mouseleave', stopSpin);
 $spinDownCount.addEventListener('mouseleave', stopSpin);
 
-function createResultRow(text) {
+function createResultRow(text, system, index) {
   const $row = document.createElement('div');
-  $row.className = 'result-row';
+  $row.className = 'result-row fade-in';
+
+  $row.style.animationDelay = `${index * 250}ms`;
+
+  const strength = system === 'pw' ? getStrength(text) : '';
+
   $row.innerHTML = `
-    <input type="text" value="${text}" readonly>
+    <div class="input-group">
+      <input type="text" value="${text}" readonly>
+      <div class="strength-meter ${strength}">
+        <div class="bar bar-1"></div>
+        <div class="bar bar-2"></div>
+        <div class="bar bar-3"></div>
+      </div>
+    </div>
     <button class="copy-btn-small">
       <span class="material-symbols-outlined">content_copy</span>
     </button>
@@ -128,7 +141,8 @@ const handleGeneration = () => {
     if (system === 'pw') result = generatePassword(length);
     else if (system === 'file') result = generateFileName(length);
     else if (system === 'lotto') result = generateLotto();
-    createResultRow(result);
+
+    createResultRow(result, system, i);
   }
 };
 

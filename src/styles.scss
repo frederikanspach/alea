@@ -254,6 +254,12 @@ button {
         .security-explanation {
             font-size: 0.95rem;
             line-height: 1.4;
+            margin-bottom: 1rem; // <-- Fügt Abstand nach dem ersten Absatz hinzu
+        }
+
+        .storage-info {
+            font-size: 0.9rem; // Optional: etwas kleiner für die Hierarchie
+            color: $color-text-muted; // Optional: etwas dezenter
         }
     }
 

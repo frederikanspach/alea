@@ -24,9 +24,9 @@
       <section class="settings unselectable">
         <div class="control-group">
           <label for="length-slider"
-            >Länge: <span id="length-value">32</span> Zeichen</label
+            >Länge: <span id="length-value">12</span> Zeichen</label
           >
-          <input type="range" id="length-slider" min="3" max="256" value="32" />
+          <input type="range" id="length-slider" min="3" max="256" value="12" />
         </div>
 
         <div class="control-group">
@@ -71,10 +71,17 @@
 
       <footer class="footer-area unselectable">
         <div class="security-info">
-          <h3>Sicherheitshinweise</h3>
+          <h3>Sicherheit & Datenschutz</h3>
           <p class="security-explanation">
-            Diese Anwendung nutzt die <strong>Web Crypto API</strong>. Die
-            Generierung erfolgt lokal. Es werden keine Daten übertragen.
+            ALEA nutzt die <strong>Web Crypto API</strong> für echte
+            Zufallswerte. Die Generierung erfolgt ausschließlich lokal im
+            Browser, es werden <strong>keine</strong> generierten Passwörter
+            übertragen oder auf Servern gespeichert.
+          </p>
+          <p class="storage-info">
+            Lediglich die bevorzugten UI-Einstellungen (Länge, Anzahl und
+            Design-Modus) werden lokal gespeichert, damit sie beim nächsten
+            Besuch erhalten bleiben.
           </p>
         </div>
 
@@ -86,7 +93,9 @@
             <span>Design anpassen</span>
           </button>
           <span class="separator">|</span>
-          <button id="clear-lc-btn" class="text-btn">Konfig löschen</button>
+          <button id="clear-lc-btn" class="text-btn">
+            Einstellungen zurücksetzen
+          </button>
         </div>
       </footer>
     </div>

@@ -7,55 +7,15 @@ $color-surface: #fbf8f5;
 $font-main: 'Inter', sans-serif;
 $font-mono: 'JetBrains Mono', monospace;
 
-.dark-theme {
-    background-color: #121212;
-    color: #e0e0e0;
-
-    .settings {
-        background: #1e1e1e;
-        border-color: #333;
-    }
-
-    h1 {
-        color: $color-brand;
-    }
-
-    .radio-group label {
-        background: #252525;
-        color: #aaa;
-
-        &:has(input:checked) {
-            background: $color-brand;
-            color: white;
-        }
-    }
-
-    .result-row input {
-        background: #252525;
-        color: white;
-        border-color: #333;
-    }
-
-    button.primary-action {
-        background: $color-brand;
-        color: #1a1a1a;
-    }
-
-    .text-btn,
-    .action-info {
-        color: #888;
-    }
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 .unselectable {
     user-select: none;
     -webkit-user-select: none;
-}
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
 }
 
 body {
@@ -103,6 +63,126 @@ h1 {
     }
 }
 
+.label-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 0.75rem;
+
+    label {
+        margin-bottom: 0 !important;
+    }
+
+    .unit-text {
+        font-size: 0.9rem;
+        color: $color-text-muted;
+    }
+}
+
+.num-input-wrapper {
+    display: inline-flex;
+    align-items: center;
+    background: $color-surface;
+    border: 1px solid $color-border;
+    border-radius: 6px;
+    padding: 2px 4px;
+    height: 32px;
+
+    &:focus-within {
+        border-color: $color-brand;
+    }
+}
+
+.num-input {
+    background: transparent;
+    border: none;
+    color: $color-brand;
+    font-family: $font-mono;
+    font-weight: 800;
+    width: 42px;
+    text-align: center;
+    font-size: 0.95rem;
+    outline: none;
+
+    // Chrome, Safari, Edge, Opera
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    // Firefox
+    &[type=number] {
+        -moz-appearance: textfield;
+    }
+}
+
+.spin-buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-left: 1px solid $color-border;
+    padding-left: 4px;
+    margin-left: 2px;
+
+    span {
+        font-size: 16px;
+        line-height: 0.8;
+        cursor: pointer;
+        color: $color-text-muted;
+        transition: color 0.2s;
+
+        &:hover {
+            color: $color-brand;
+        }
+    }
+}
+
+input[type="range"] {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 6px;
+    background: $color-border;
+    border-radius: 3px;
+
+    &::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        width: 20px;
+        height: 20px;
+        background: $color-brand;
+        border-radius: 50%;
+        border: 3px solid white;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+    }
+}
+
+.radio-group {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+
+    label {
+        background: $color-surface;
+        padding: 12px;
+        border-radius: 10px;
+        text-align: center;
+        cursor: pointer;
+        border: 2px solid transparent;
+        font-size: 0.85rem;
+        margin-bottom: 0 !important;
+
+        &:has(input:checked) {
+            border-color: $color-brand;
+            font-weight: 600;
+        }
+
+        input {
+            display: none;
+        }
+    }
+}
+
 .action-section {
     margin-top: 0.5rem;
     display: flex;
@@ -117,14 +197,6 @@ h1 {
     button {
         flex: 1;
     }
-}
-
-.action-info {
-    font-size: 0.82rem;
-    color: $color-text-muted;
-    text-align: center;
-    font-family: $font-mono;
-    opacity: 0.8;
 }
 
 button {
@@ -186,30 +258,12 @@ button {
     }
 }
 
-.radio-group {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 8px;
-
-    label {
-        background: $color-surface;
-        padding: 12px;
-        border-radius: 10px;
-        text-align: center;
-        cursor: pointer;
-        border: 2px solid transparent;
-        font-size: 0.85rem;
-        margin-bottom: 0 !important;
-
-        &:has(input:checked) {
-            border-color: $color-brand;
-            font-weight: 600;
-        }
-
-        input {
-            display: none;
-        }
-    }
+.action-info {
+    font-size: 0.82rem;
+    color: $color-text-muted;
+    text-align: center;
+    font-family: $font-mono;
+    opacity: 0.8;
 }
 
 .output-area {
@@ -254,12 +308,12 @@ button {
         .security-explanation {
             font-size: 0.95rem;
             line-height: 1.4;
-            margin-bottom: 1rem; // <-- Fügt Abstand nach dem ersten Absatz hinzu
+            margin-bottom: 1rem;
         }
 
         .storage-info {
-            font-size: 0.9rem; // Optional: etwas kleiner für die Hierarchie
-            color: $color-text-muted; // Optional: etwas dezenter
+            font-size: 0.9rem;
+            color: $color-text-muted;
         }
     }
 
@@ -272,27 +326,57 @@ button {
     }
 }
 
-@media (min-width: 768px) {
-    .radio-group {
-        grid-template-columns: repeat(3, 1fr);
+.dark-theme {
+    background-color: #121212;
+    color: #e0e0e0;
+
+    .settings {
+        background: #1e1e1e;
+        border-color: #333;
+    }
+
+    h1 {
+        color: $color-brand;
+    }
+
+    .num-input-wrapper {
+        background: #252525;
+        border-color: #333;
+    }
+
+    .spin-buttons {
+        border-color: #333;
+    }
+
+    .result-row input {
+        background: #252525;
+        color: white;
+        border-color: #333;
+    }
+
+    button.primary-action {
+        background: $color-brand;
+        color: #1a1a1a;
+    }
+
+    .text-btn,
+    .action-info {
+        color: #888;
+    }
+
+    .radio-group label {
+        background: #252525;
+        color: #aaa;
+
+        &:has(input:checked) {
+            background: $color-brand;
+            color: white;
+        }
     }
 }
 
-input[type="range"] {
-    -webkit-appearance: none;
-    width: 100%;
-    height: 6px;
-    background: $color-border;
-    border-radius: 3px;
-
-    &::-webkit-slider-thumb {
-        -webkit-appearance: none;
-        width: 20px;
-        height: 20px;
-        background: $color-brand;
-        border-radius: 50%;
-        border: 3px solid white;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-        cursor: pointer;
+@media (min-width: 768px) {
+    .radio-group {
+        grid-template-columns: repeat(3, 1fr);
     }
 }

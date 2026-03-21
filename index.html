@@ -16,6 +16,17 @@
       name="description"
       content="Kryptografisch sicherer Zufallsgenerator für Passwörter, Systeme und Lotto."
     />
+
+    <style>
+      #app {
+        opacity: 0;
+        transition: opacity 0.2s ease-in;
+      }
+
+      .loaded #app {
+        opacity: 1;
+      }
+    </style>
   </head>
   <body>
     <div id="app">
@@ -23,16 +34,58 @@
 
       <section class="settings unselectable">
         <div class="control-group">
-          <label for="length-slider"
-            >Länge: <span id="length-value">12</span> Zeichen</label
-          >
+          <div class="label-row unselectable">
+            <label for="length-slider">Länge:</label>
+
+            <div class="num-input-wrapper">
+              <input
+                type="number"
+                id="length-num"
+                min="3"
+                max="256"
+                value="12"
+                class="num-input"
+              />
+              <div class="spin-buttons">
+                <span id="spin-up" class="material-symbols-outlined"
+                  >expand_less</span
+                >
+                <span id="spin-down" class="material-symbols-outlined"
+                  >expand_more</span
+                >
+              </div>
+            </div>
+
+            <span class="unit-text">Zeichen</span>
+          </div>
+
           <input type="range" id="length-slider" min="3" max="256" value="12" />
         </div>
 
         <div class="control-group">
-          <label for="count-slider"
-            >Anzahl: <span id="count-value">1</span></label
-          >
+          <div class="label-row unselectable">
+            <label for="count-slider">Anzahl:</label>
+
+            <div class="num-input-wrapper">
+              <input
+                type="number"
+                id="count-num"
+                min="1"
+                max="99"
+                value="1"
+                class="num-input"
+              />
+              <div class="spin-buttons">
+                <span id="spin-up-count" class="material-symbols-outlined"
+                  >expand_less</span
+                >
+                <span id="spin-down-count" class="material-symbols-outlined"
+                  >expand_more</span
+                >
+              </div>
+            </div>
+          </div>
+
           <input type="range" id="count-slider" min="1" max="99" value="1" />
         </div>
 

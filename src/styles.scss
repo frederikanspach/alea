@@ -99,7 +99,7 @@ h1 {
     label {
         font-weight: 600;
         font-size: 0.95rem;
-        margin-bottom: 0.75rem; // Der gewünschte Abstand
+        margin-bottom: 0.75rem;
     }
 }
 
@@ -269,12 +269,6 @@ button {
 @media (min-width: 768px) {
     .radio-group {
         grid-template-columns: repeat(3, 1fr);
-    }
-}
-
-@media (min-width: 1024px) {
-    .radio-group {
-        grid-template-columns: repeat(6, 1fr);
     }
 }
 
